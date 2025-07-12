@@ -1,0 +1,50 @@
+[2.956s] Invoking command in '/home/pi/ros_with_controller/src/second_pubsub': PYTHONPATH=/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/second_pubsub build --build-base /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build install --record /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log --single-version-externally-managed install_data
+[4.081s] running egg_info
+[4.083s] creating build/second_pubsub/second_pubsub.egg-info
+[4.084s] writing build/second_pubsub/second_pubsub.egg-info/PKG-INFO
+[4.085s] writing dependency_links to build/second_pubsub/second_pubsub.egg-info/dependency_links.txt
+[4.086s] writing entry points to build/second_pubsub/second_pubsub.egg-info/entry_points.txt
+[4.086s] writing requirements to build/second_pubsub/second_pubsub.egg-info/requires.txt
+[4.087s] writing top-level names to build/second_pubsub/second_pubsub.egg-info/top_level.txt
+[4.088s] writing manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'
+[4.095s] reading manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'
+[4.098s] writing manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'
+[4.099s] running build
+[4.099s] running build_py
+[4.100s] creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build
+[4.100s] creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib
+[4.101s] creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.101s] copying second_pubsub/__init__.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.101s] copying second_pubsub/talker3.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.102s] copying second_pubsub/listner1.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.104s] copying second_pubsub/listner2.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.105s] copying second_pubsub/talker.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.106s] copying second_pubsub/talker2.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub
+[4.107s] running install
+[4.109s] running install_lib
+[4.112s] creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.113s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/__init__.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.114s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker3.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.114s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/listner1.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.115s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/listner2.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.116s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.117s] copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker2.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub
+[4.119s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/__init__.py to __init__.cpython-310.pyc
+[4.121s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker3.py to talker3.cpython-310.pyc
+[4.124s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/listner1.py to listner1.cpython-310.pyc
+[4.127s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/listner2.py to listner2.cpython-310.pyc
+[4.129s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker.py to talker.cpython-310.pyc
+[4.132s] byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker2.py to talker2.cpython-310.pyc
+[4.134s] running install_data
+[4.135s] creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index
+[4.135s] creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index
+[4.136s] creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index/packages
+[4.136s] copying resource/second_pubsub -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index/packages
+[4.136s] copying package.xml -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/second_pubsub
+[4.137s] running install_egg_info
+[4.143s] Copying build/second_pubsub/second_pubsub.egg-info to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub-0.0.0-py3.10.egg-info
+[4.149s] running install_scripts
+[4.229s] Installing listner script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub
+[4.230s] Installing talker script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub
+[4.231s] writing list of installed files to '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log'
+[4.343s] Invoked command in '/home/pi/ros_with_controller/src/second_pubsub' returned '0': PYTHONPATH=/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/second_pubsub build --build-base /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build install --record /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log --single-version-externally-managed install_data

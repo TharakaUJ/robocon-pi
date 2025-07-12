@@ -1,0 +1,22 @@
+[3.001s] Invoking command in '/home/pi/ros_with_controller/src/second_pubsub': PYTHONPATH=/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/second_pubsub build --build-base /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build install --record /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log --single-version-externally-managed install_data
+[4.223s] running egg_info
+[4.226s] writing build/second_pubsub/second_pubsub.egg-info/PKG-INFO
+[4.227s] writing dependency_links to build/second_pubsub/second_pubsub.egg-info/dependency_links.txt
+[4.228s] writing entry points to build/second_pubsub/second_pubsub.egg-info/entry_points.txt
+[4.229s] writing requirements to build/second_pubsub/second_pubsub.egg-info/requires.txt
+[4.230s] writing top-level names to build/second_pubsub/second_pubsub.egg-info/top_level.txt
+[4.238s] reading manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'
+[4.247s] writing manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'
+[4.247s] running build
+[4.248s] running build_py
+[4.250s] running install
+[4.252s] running install_lib
+[4.260s] running install_data
+[4.261s] running install_egg_info
+[4.271s] removing '/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub-0.0.0-py3.10.egg-info' (and everything under it)
+[4.273s] Copying build/second_pubsub/second_pubsub.egg-info to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub-0.0.0-py3.10.egg-info
+[4.278s] running install_scripts
+[4.357s] Installing listner script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub
+[4.358s] Installing talker script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub
+[4.360s] writing list of installed files to '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log'
+[4.491s] Invoked command in '/home/pi/ros_with_controller/src/second_pubsub' returned '0': PYTHONPATH=/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/second_pubsub build --build-base /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build install --record /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log --single-version-externally-managed install_data

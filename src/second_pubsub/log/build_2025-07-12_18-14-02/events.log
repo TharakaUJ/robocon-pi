@@ -1,0 +1,98 @@
+[0.000000] (-) TimerEvent: {}
+[0.001383] (second_pubsub) JobQueued: {'identifier': 'second_pubsub', 'dependencies': OrderedDict()}
+[0.001609] (second_pubsub) JobStarted: {'identifier': 'second_pubsub'}
+[0.097975] (-) TimerEvent: {}
+[0.198704] (-) TimerEvent: {}
+[0.299812] (-) TimerEvent: {}
+[0.400437] (-) TimerEvent: {}
+[0.501062] (-) TimerEvent: {}
+[0.601632] (-) TimerEvent: {}
+[0.702224] (-) TimerEvent: {}
+[0.802787] (-) TimerEvent: {}
+[0.903359] (-) TimerEvent: {}
+[1.004058] (-) TimerEvent: {}
+[1.104761] (-) TimerEvent: {}
+[1.205441] (-) TimerEvent: {}
+[1.306298] (-) TimerEvent: {}
+[1.406883] (-) TimerEvent: {}
+[1.507535] (-) TimerEvent: {}
+[1.608175] (-) TimerEvent: {}
+[1.708892] (-) TimerEvent: {}
+[1.809485] (-) TimerEvent: {}
+[1.910087] (-) TimerEvent: {}
+[2.010696] (-) TimerEvent: {}
+[2.111251] (-) TimerEvent: {}
+[2.211819] (-) TimerEvent: {}
+[2.312420] (-) TimerEvent: {}
+[2.413021] (-) TimerEvent: {}
+[2.513730] (-) TimerEvent: {}
+[2.614378] (-) TimerEvent: {}
+[2.715263] (-) TimerEvent: {}
+[2.815930] (-) TimerEvent: {}
+[2.916818] (-) TimerEvent: {}
+[2.954327] (second_pubsub) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', 'build/second_pubsub', 'build', '--build-base', '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build', 'install', '--record', '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/pi/ros_with_controller/src/second_pubsub', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'pi', 'SSH_CLIENT': '172.20.10.3 45224 22', 'LC_TIME': 'si_LK', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/pi', 'OLDPWD': '/home/pi/ros_with_controller/src/second_pubsub/second_pubsub', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'LC_MONETARY': 'si_LK', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLCON_PREFIX_PATH': '/home/pi/ros_with_controller/src/second_pubsub/second_pubsub/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'pi', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '6', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/home/pi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LC_ADDRESS': 'si_LK', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'si_LK', 'LS_COLORS': '', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'si_LK', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'si_LK', 'LC_IDENTIFICATION': 'si_LK', 'PWD': '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub', 'SSH_CONNECTION': '172.20.10.3 45224 172.20.10.12 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'si_LK', 'LC_PAPER': 'si_LK', 'COLCON': '1'}, 'shell': False}
+[3.017061] (-) TimerEvent: {}
+[3.118012] (-) TimerEvent: {}
+[3.218720] (-) TimerEvent: {}
+[3.319432] (-) TimerEvent: {}
+[3.420019] (-) TimerEvent: {}
+[3.520689] (-) TimerEvent: {}
+[3.621285] (-) TimerEvent: {}
+[3.721917] (-) TimerEvent: {}
+[3.822534] (-) TimerEvent: {}
+[3.923250] (-) TimerEvent: {}
+[4.023902] (-) TimerEvent: {}
+[4.082286] (second_pubsub) StdoutLine: {'line': b'running egg_info\n'}
+[4.084571] (second_pubsub) StdoutLine: {'line': b'creating build/second_pubsub/second_pubsub.egg-info\n'}
+[4.085365] (second_pubsub) StdoutLine: {'line': b'writing build/second_pubsub/second_pubsub.egg-info/PKG-INFO\n'}
+[4.086534] (second_pubsub) StdoutLine: {'line': b'writing dependency_links to build/second_pubsub/second_pubsub.egg-info/dependency_links.txt\n'}
+[4.087154] (second_pubsub) StdoutLine: {'line': b'writing entry points to build/second_pubsub/second_pubsub.egg-info/entry_points.txt\n'}
+[4.087792] (second_pubsub) StdoutLine: {'line': b'writing requirements to build/second_pubsub/second_pubsub.egg-info/requires.txt\n'}
+[4.088274] (second_pubsub) StdoutLine: {'line': b'writing top-level names to build/second_pubsub/second_pubsub.egg-info/top_level.txt\n'}
+[4.089155] (second_pubsub) StdoutLine: {'line': b"writing manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'\n"}
+[4.096188] (second_pubsub) StdoutLine: {'line': b"reading manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'\n"}
+[4.099588] (second_pubsub) StdoutLine: {'line': b"writing manifest file 'build/second_pubsub/second_pubsub.egg-info/SOURCES.txt'\n"}
+[4.100182] (second_pubsub) StdoutLine: {'line': b'running build\n'}
+[4.100686] (second_pubsub) StdoutLine: {'line': b'running build_py\n'}
+[4.101269] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build\n'}
+[4.101816] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib\n'}
+[4.102238] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.102571] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/__init__.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.102974] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/talker3.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.103573] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/listner1.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.105204] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/listner2.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.106630] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/talker.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.107335] (second_pubsub) StdoutLine: {'line': b'copying second_pubsub/talker2.py -> /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub\n'}
+[4.108705] (second_pubsub) StdoutLine: {'line': b'running install\n'}
+[4.110115] (second_pubsub) StdoutLine: {'line': b'running install_lib\n'}
+[4.113899] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.114481] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/__init__.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.115132] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker3.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.115918] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/listner1.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.116759] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/listner2.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.117521] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.118280] (second_pubsub) StdoutLine: {'line': b'copying /home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/build/lib/second_pubsub/talker2.py -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub\n'}
+[4.120797] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/__init__.py to __init__.cpython-310.pyc\n'}
+[4.122296] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker3.py to talker3.cpython-310.pyc\n'}
+[4.124049] (-) TimerEvent: {}
+[4.125102] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/listner1.py to listner1.cpython-310.pyc\n'}
+[4.128438] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/listner2.py to listner2.cpython-310.pyc\n'}
+[4.130211] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker.py to talker.cpython-310.pyc\n'}
+[4.132946] (second_pubsub) StdoutLine: {'line': b'byte-compiling /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub/talker2.py to talker2.cpython-310.pyc\n'}
+[4.135572] (second_pubsub) StdoutLine: {'line': b'running install_data\n'}
+[4.136104] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index\n'}
+[4.136701] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index\n'}
+[4.137155] (second_pubsub) StdoutLine: {'line': b'creating /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index/packages\n'}
+[4.137482] (second_pubsub) StdoutLine: {'line': b'copying resource/second_pubsub -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/ament_index/resource_index/packages\n'}
+[4.137885] (second_pubsub) StdoutLine: {'line': b'copying package.xml -> /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/share/second_pubsub\n'}
+[4.138347] (second_pubsub) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.144914] (second_pubsub) StdoutLine: {'line': b'Copying build/second_pubsub/second_pubsub.egg-info to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/python3.10/site-packages/second_pubsub-0.0.0-py3.10.egg-info\n'}
+[4.150311] (second_pubsub) StdoutLine: {'line': b'running install_scripts\n'}
+[4.224264] (-) TimerEvent: {}
+[4.230311] (second_pubsub) StdoutLine: {'line': b'Installing listner script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub\n'}
+[4.231102] (second_pubsub) StdoutLine: {'line': b'Installing talker script to /home/pi/ros_with_controller/src/second_pubsub/install/second_pubsub/lib/second_pubsub\n'}
+[4.232831] (second_pubsub) StdoutLine: {'line': b"writing list of installed files to '/home/pi/ros_with_controller/src/second_pubsub/build/second_pubsub/install.log'\n"}
+[4.324514] (-) TimerEvent: {}
+[4.344295] (second_pubsub) CommandEnded: {'returncode': 0}
+[4.407547] (second_pubsub) JobEnded: {'identifier': 'second_pubsub', 'rc': 0}
+[4.410186] (-) EventReactorShutdown: {}
