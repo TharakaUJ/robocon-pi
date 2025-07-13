@@ -36,7 +36,7 @@ class Controller(Node):
         self.odometry_publisher = self.create_publisher(String, 'robot/odometry', 10)
         
 
-        self.get_logger().info('Controller node started. Listening for key commands on /remote_keys')
+        self.get_logger().info('Controller node started. Listening serial connection and publishing to robot/odometry')
 
     def key_callback(self, msg: String):
         key = msg.data.lower().strip()
@@ -59,7 +59,8 @@ class Controller(Node):
             elif key == 'd':
                 cmd.data = '-255 255 255 -255'
             elif key == 'c':
-            	cmd.data = '0 0 0 0'
+                cmd.data = '0 0 0 0'
+            
             self.moving_publisher.publish(cmd)
             self.get_logger().info(f'Published to robot/moving: "{cmd.data}"')
 
