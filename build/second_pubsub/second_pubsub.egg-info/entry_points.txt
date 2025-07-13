@@ -1,4 +1,0 @@
-[console_scripts]
-listner = second_pubsub.listner1:main
-talker = second_pubsub.talker2:main
-
