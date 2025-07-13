@@ -40,12 +40,12 @@ class Controller(Node):
         self.timer = self.create_timer(0.05, self.read_serial_line)  # 20Hz
 
     def read_serial_line(self):
-        if self.ser.in_waiting > 0:
-            line = self.ser.readline().decode('utf-8').strip()
-            if line:
+        if self.serial_connection.in_waiting > 0:
+            line = self.serial_connection.readline().decode('utf-8').strip()
+            if line.startswith("ODM"):
                 msg = String()
                 msg.data = line
-                self.publisher.publish(msg)
+                self.odometry_publisher.publish(msg)
                 self.get_logger().info(f'Published: {line}')
 
 

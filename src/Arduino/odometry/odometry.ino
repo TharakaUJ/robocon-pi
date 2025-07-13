@@ -46,6 +46,7 @@ void loop() {
   // Get motion count since last call
   flow.readMotionCount(&deltaX, &deltaY);
 
+  Serial.print("ODM:");
   Serial.print("X: ");
   Serial.print(deltaX);
   Serial.print(", Y: ");
@@ -65,7 +66,7 @@ void loop() {
   Serial.print(pitch);
   Serial.print(F(" z: "));
   Serial.print(roll);
-  Serial.println(F(""));
+  Serial.print(F(""));
 
 
   dx_world = dx_raw * cos(yaw) - dy_raw * sin(yaw);
