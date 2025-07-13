@@ -37,39 +37,22 @@ class Controller(Node):
         
 
         self.get_logger().info('Controller node started. Listening serial connection and publishing to robot/odometry')
+        self.timer = self.create_timer(0.05, self.read_serial_line)  # 20Hz
 
-    def key_callback(self, msg: String):
-        key = msg.data.lower().strip()
-        if not key:
-            return
+    def read_serial_line(self):
+        if self.ser.in_waiting > 0:
+            line = self.ser.readline().decode('utf-8').strip()
+            if line:
+                msg = String()
+                msg.data = line
+                self.publisher.publish(msg)
+                self.get_logger().info(f'Published: {line}')
 
-        if key == 'x':
-            self.get_logger().info('Received "x" - shutting down')
-            rclpy.shutdown()
-            return
 
-        if key in ['w', 'a', 's', 'd', 'c']:
-            cmd = String()
-            if key == 'w':
-                cmd.data = '255 255 255 255'
-            elif key == 's':
-                cmd.data = '-255 -255 -255 -255'
-            elif key == 'a':
-                cmd.data = '255 -255 -255 255'
-            elif key == 'd':
-                cmd.data = '-255 255 255 -255'
-            elif key == 'c':
-                cmd.data = '0 0 0 0'
-            
-            self.moving_publisher.publish(cmd)
-            self.get_logger().info(f'Published to robot/moving: "{cmd.data}"')
-
-        elif key in ['q', 'e']:
-            cmd = String()
-            cmd.data = 'UP' if key == 'q' else 'DOWN'
-            self.lift_publisher.publish(cmd)
-            self.get_logger().info(f'Published to robot/lift: "{cmd.data}"')
-
+    def __del__(self):
+        if hasattr(self, 'serial_connection') and self.serial_connection and self.serial_connection.is_open:
+            self.serial_connection.close()
+            self.get_logger().info('Serial connection closed')
 
 def main(args=None):
     rclpy.init(args=args)

@@ -12,7 +12,7 @@
 //                                   id, address
 Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x29);
 
-// Using digital pin 10 for chip select
+// Using digital pin 5 for chip select
 Bitcraze_PMW3901 flow(5);
 
 float yaw,pitch,roll;
