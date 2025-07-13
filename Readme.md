@@ -17,4 +17,4 @@ All ESP32 firmware sketches are located in the `arduino` folder.
 
 ## Device Port Mappings
 
-Port mappings for each device are specified in the `devices.yml` file.
+Port mappings for each device are specified in the `devices.env` file.
