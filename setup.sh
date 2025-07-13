@@ -2,7 +2,7 @@
 
 # setup.sh - Setup script for robocon-pi
 
-set -euo pipefail
+# set -euo pipefail
 
 # Your setup commands go here
 
