@@ -4,6 +4,7 @@
 
 # Source ROS setup (update the path if needed)
 source /opt/ros/noetic/setup.bash
+source ./src/devices.env
 
 # Start rosbridge server in the background
 roslaunch rosbridge_server rosbridge_websocket.launch &

@@ -11,8 +11,8 @@ echo "Setup script started."
 # Example: Update package list
 # sudo apt-get update
 source /opt/ros/humble/setup.bash
+source ./src/devices.env
 source ./install/setup.bash
-
 
 
 echo "Setup script completed."

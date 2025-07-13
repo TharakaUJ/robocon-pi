@@ -5,30 +5,27 @@ from rclpy.node import Node
 from std_msgs.msg import String
 import serial
 import time
+import os
 
 class ESP32(Node):
     def __init__(self):
         super().__init__('ESP32')
-        # Try multiple possible serial ports
-        self.serial_ports = ['/dev/ttyUSB0', '/dev/ttyUSB1']
+        self.serial_port = os.getenv("MOVEMENT_PORT")
         self.baud_rate = 115200
         self.serial_connection = None
         
-        # Try each port in order
-        for port in self.serial_ports:
-            try:
-                self.get_logger().info(f'Attempting connection to {port}...')
-                self.serial_connection = serial.Serial(
-                    port=port,
-                    baudrate=self.baud_rate,
-                    timeout=1
-                )
-                time.sleep(2)  # Wait for connection to establish
-                self.get_logger().info(f'Successfully connected to ESP32 on {port}')
-                break  # Exit loop if connection succeeds
-            except (serial.SerialException, OSError) as e:
-                self.get_logger().warning(f'Failed to connect to {port}: {str(e)}')
-                continue
+        try:
+            self.get_logger().info(f'Attempting connection to {self.serial_port}...')
+            self.serial_connection = serial.Serial(
+                port=self.serial_port,
+                baudrate=self.baud_rate,
+                timeout=1
+            )
+            time.sleep(2)  # Wait for connection to establish
+            self.get_logger().info(f'Successfully connected to ESP32 on {self.serial_port}')
+            
+        except (serial.SerialException, OSError) as e:
+            self.get_logger().warning(f'Failed to connect to {self.serial_port}: {str(e)}')
         
         if not self.serial_connection or not self.serial_connection.is_open:
             self.get_logger().error('Could not connect to ESP32 on any port!')
