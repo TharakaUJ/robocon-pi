@@ -42,7 +42,7 @@ class Controller(Node):
             elif key == 'd':
                 cmd.data = '-255 255 255 -255'
             elif key == 'c':
-            	cmd.data = '0 0 0 0'
+                cmd.data = '0 0 0 0'
             self.moving_publisher.publish(cmd)
             self.get_logger().info(f'Published to robot/moving: "{cmd.data}"')
 
