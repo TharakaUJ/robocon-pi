@@ -3,9 +3,9 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-import serial
 import time
 import os
+import serial
 
 class Controller(Node):
     def __init__(self):

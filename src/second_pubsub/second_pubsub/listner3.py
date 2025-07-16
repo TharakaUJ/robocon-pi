@@ -3,7 +3,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-import serial
+import pyserial
 import time
 import os
 
@@ -16,7 +16,7 @@ class ESP32(Node):
         
         try:
             self.get_logger().info(f'Attempting connection to {self.serial_port}...')
-            self.serial_connection = serial.Serial(
+            self.serial_connection = pyserial.Serial(
                 port=self.serial_port,
                 baudrate=self.baud_rate,
                 timeout=1
