@@ -2,14 +2,23 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+# from std_msgs.msg import String
 import time
 import os
 import serial
+import struct
+from geometry_msgs.msg import Pose2D
+from dotenv import load_dotenv
 
 class Controller(Node):
     def __init__(self):
         super().__init__('ESP32_ODOMETRY')
+
+        dotenv_path = os.path.join(os.path.dirname(__file__), '../../../../../../devices.env')
+        print(f"Trying to load: {os.path.abspath(dotenv_path)}")
+        load_dotenv(dotenv_path)
+
+
         self.serial_port = os.getenv("ODOMETRY_PORT")
         self.baud_rate = 115200
         self.serial_connection = None
@@ -22,7 +31,8 @@ class Controller(Node):
                 timeout=1
             )
             time.sleep(2)  # Wait for connection to establish
-            self.get_logger().info(f'Successfully connected to ESP32-Odometry on {self.serial_port}')
+            if self.serial_connection and self.serial_connection.is_open:
+                self.get_logger().info(f'Successfully connected to ESP32-Odometry on {self.serial_port}')
             
         except (serial.SerialException, OSError) as e:
             self.get_logger().warning(f'Failed to connect to {self.serial_port}: {str(e)}')
@@ -33,7 +43,7 @@ class Controller(Node):
 
 
         # Create publishers for topics
-        self.odometry_publisher = self.create_publisher(String, 'robot/odometry', 10)
+        self.odometry_publisher = self.create_publisher(Pose2D, 'robot/odometry', 10)
         
 
         self.get_logger().info('Controller node started. Listening serial connection and publishing to robot/odometry')
@@ -41,12 +51,25 @@ class Controller(Node):
 
     def read_serial_line(self):
         if self.serial_connection.in_waiting > 0:
-            line = self.serial_connection.readline().decode('utf-8').strip()
-            if line.startswith("ODM"):
-                msg = String()
-                msg.data = line
-                self.odometry_publisher.publish(msg)
-                self.get_logger().info(f'Published: {line}')
+            try:
+                # Read raw bytes for OdometryData struct: float theta, float x, float y
+                struct_fmt = '<3f'  # little-endian, 3 floats
+                struct_size = struct.calcsize(struct_fmt)
+                raw_bytes = self.serial_connection.read(struct_size)
+                if len(raw_bytes) != struct_size:
+                    raise ValueError("Incomplete OdometryData struct received")
+
+                theta, x, y = struct.unpack(struct_fmt, raw_bytes)
+
+                pose_msg = Pose2D()
+                pose_msg.x = x
+                pose_msg.y = y
+                pose_msg.theta = theta
+
+                self.odometry_publisher.publish(pose_msg)
+                
+            except Exception as e:
+                self.get_logger().warning(f'Failed to parse odometry data: {e}')
 
 
     def __del__(self):

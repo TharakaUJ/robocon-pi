@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
 		'talker = second_pubsub.talker3:main',
-		'listner = second_pubsub.listner1:main',
+		'listner = second_pubsub.listner3:main',
         ],
     },
 )

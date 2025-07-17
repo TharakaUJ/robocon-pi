@@ -3,26 +3,33 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-import pyserial
+import serial
 import time
 import os
+from dotenv import load_dotenv
 
 class ESP32(Node):
     def __init__(self):
         super().__init__('ESP32')
+
+        dotenv_path = os.path.join(os.path.dirname(__file__), '../../../../../../devices.env')
+        print(f"Trying to load: {os.path.abspath(dotenv_path)}")
+        load_dotenv(dotenv_path)
+
         self.serial_port = os.getenv("MOVEMENT_PORT")
         self.baud_rate = 115200
         self.serial_connection = None
         
         try:
             self.get_logger().info(f'Attempting connection to {self.serial_port}...')
-            self.serial_connection = pyserial.Serial(
+            self.serial_connection = serial.Serial(
                 port=self.serial_port,
                 baudrate=self.baud_rate,
                 timeout=1
             )
             time.sleep(2)  # Wait for connection to establish
-            self.get_logger().info(f'Successfully connected to ESP32 on {self.serial_port}')
+            if self.serial_connection and self.serial_connection.is_open:
+                self.get_logger().info(f'Successfully connected to ESP32-move on {self.serial_port}')
             
         except (serial.SerialException, OSError) as e:
             self.get_logger().warning(f'Failed to connect to {self.serial_port}: {str(e)}')
