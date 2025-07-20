@@ -10,8 +10,6 @@ class InrangeServer(Node):
     def __init__(self):
         super().__init__('navigate_action_server')
 
-        print("starting hello")
-
         self._action_server = ActionServer(
             self,
             Inrange,
