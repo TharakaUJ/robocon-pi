@@ -3,11 +3,14 @@ from autopilot.action import Inrange
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer
+import time
 import math
 
 class InrangeServer(Node):
     def __init__(self):
         super().__init__('navigate_action_server')
+
+        print("starting hello")
 
         self._action_server = ActionServer(
             self,
@@ -40,7 +43,7 @@ class InrangeServer(Node):
 
             if self.current_pose is None:
                 self.get_logger().info("Waiting for odometry...")
-                await rclpy.sleep(0.1)
+                time.sleep(0.1)
                 continue
 
             dx = target_x - self.current_pose.position.x
@@ -60,7 +63,7 @@ class InrangeServer(Node):
             # Send movement command
             self.send_control_command(dx, dy, distance)
 
-            await rclpy.sleep(0.1)
+            time.sleep(0.1)
 
     def send_control_command(self, dx, dy, distance):
         # Normalize direction
