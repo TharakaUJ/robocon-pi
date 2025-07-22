@@ -4,56 +4,96 @@ from geometry_msgs.msg import Pose2D
 import pigpio
 import time
 
-PWM_PIN_VX = 17     # Flysky Channel 1 (e.g. right joystick left-right)
-PWM_PIN_VY = 27     # Flysky Channel 2 (e.g. right joystick up-down)
-PWM_PIN_THETA = 22  # Flysky Channel 3 (e.g. left joystick left-right)
+PWM_PIN_VX = 17
+PWM_PIN_VY = 27
+PWM_PIN_THETA = 22
 
-PWM_CENTER = 1500  # Neutral
-PWM_RANGE = 500    # Range from center to extreme (1000 or 2000)
+NEUTRAL_PW = 1500  # microseconds
+TOLERANCE = 50     # deadzone for neutral
+FAILSAFE_TIMEOUT = 0.5  # seconds
+
+def normalize_pwm(pw):
+    """Convert PWM to normalized range [-1, 1]"""
+    return max(-1.0, min(1.0, (pw - NEUTRAL_PW) / 500.0))  # 1000-2000 -> -1 to 1
+
+class PWMInput:
+    def __init__(self, pi, pin):
+        self.pi = pi
+        self.pin = pin
+        self.last_value = NEUTRAL_PW
+        self.last_change = time.time()
+        self.pi.set_mode(pin, pigpio.INPUT)
+        self.pi.set_pull_up_down(pin, pigpio.PUD_OFF)
+        self.cb = self.pi.callback(pin, pigpio.EITHER_EDGE, self._cb)
+        self._high_tick = None
+
+    def _cb(self, gpio, level, tick):
+        if level == 1:
+            self._high_tick = tick
+        elif level == 0 and self._high_tick is not None:
+            pulse_width = pigpio.tickDiff(self._high_tick, tick)
+            if 900 <= pulse_width <= 2100:  # valid range
+                self.last_value = pulse_width
+                self.last_change = time.time()
+
+    def get_value(self):
+        return self.last_value, self.last_change
 
 class Controller(Node):
     def __init__(self):
-        super().__init__('Flysky_PWM_Controller')
+        super().__init__('flysky_controller')
+        self.publisher = self.create_publisher(Pose2D, 'robot/control_input', 10)
 
-        # ROS2 publisher
-        self.control_publisher = self.create_publisher(Pose2D, 'robot/control_input', 10)
-
-        # Initialize pigpio
         self.pi = pigpio.pi()
         if not self.pi.connected:
-            raise RuntimeError("Cannot connect to pigpio daemon")
+            self.get_logger().error("Failed to connect to pigpio daemon.")
+            raise RuntimeError("Cannot connect to pigpio")
 
-        # Set input mode
-        self.pi.set_mode(PWM_PIN_VX, pigpio.INPUT)
-        self.pi.set_mode(PWM_PIN_VY, pigpio.INPUT)
-        self.pi.set_mode(PWM_PIN_THETA, pigpio.INPUT)
+        self.input_vx = PWMInput(self.pi, PWM_PIN_VX)
+        self.input_vy = PWMInput(self.pi, PWM_PIN_VY)
+        self.input_theta = PWMInput(self.pi, PWM_PIN_THETA)
 
-        # Timer to read and publish PWM values
-        self.timer = self.create_timer(0.05, self.read_pwm_and_publish)  # 20 Hz
+        self.last_publish_time = 0.0
+        self.last_values = (0.0, 0.0, 0.0)
 
-    def normalize_pwm(self, pulse_width):
-        # Normalize 1000–2000 μs to -1.0 to 1.0
-        return max(-1.0, min(1.0, (pulse_width - PWM_CENTER) / PWM_RANGE))
+        self.timer = self.create_timer(0.02, self.check_and_publish)  # 50Hz
 
-    def read_pwm_and_publish(self):
-        raw_vx = self.pi.get_servo_pulsewidth(PWM_PIN_VX)
-        raw_vy = self.pi.get_servo_pulsewidth(PWM_PIN_VY)
-        raw_theta = self.pi.get_servo_pulsewidth(PWM_PIN_THETA)
+    def check_and_publish(self):
+        now = time.time()
+        vx_pw, vx_time = self.input_vx.get_value()
+        vy_pw, vy_time = self.input_vy.get_value()
+        theta_pw, theta_time = self.input_theta.get_value()
 
-        # Normalize values
-        vx = self.normalize_pwm(raw_vx)
-        vy = self.normalize_pwm(raw_vy)
-        theta = self.normalize_pwm(raw_theta)
+        # Fail-safe: if no update in timeout period, skip publish
+        if (now - vx_time > FAILSAFE_TIMEOUT or
+            now - vy_time > FAILSAFE_TIMEOUT or
+            now - theta_time > FAILSAFE_TIMEOUT):
+            self.get_logger().warn("No RC signal detected: entering failsafe.")
+            return
 
-        msg = Pose2D()
-        msg.x = vx
-        msg.y = vy
-        msg.theta = theta
-        self.control_publisher.publish(msg)
+        # Normalize input to -1.0 to +1.0
+        vx = normalize_pwm(vx_pw)
+        vy = normalize_pwm(vy_pw)
+        theta = normalize_pwm(theta_pw)
 
-        self.get_logger().info(f"PWM vx={raw_vx} vy={raw_vy} theta={raw_theta} → vx={vx:.2f} vy={vy:.2f} theta={theta:.2f}")
+        # Apply deadzone
+        vx = 0.0 if abs(vx) < 0.05 else vx
+        vy = 0.0 if abs(vy) < 0.05 else vy
+        theta = 0.0 if abs(theta) < 0.05 else theta
+
+        # Only publish if values changed significantly
+        if (vx, vy, theta) != self.last_values:
+            self.last_values = (vx, vy, theta)
+
+            msg = Pose2D()
+            msg.x = vx
+            msg.y = vy
+            msg.theta = theta
+            self.publisher.publish(msg)
+            self.get_logger().info(f"Published control: vx={vx:.2f}, vy={vy:.2f}, theta={theta:.2f}")
 
     def destroy_node(self):
+        self.get_logger().info("Shutting down RC controller node.")
         self.pi.stop()
         super().destroy_node()
 
