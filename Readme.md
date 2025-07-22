@@ -67,3 +67,17 @@ ros2 param list /<node_name>
 # Set a parameter for a node (replace <node_name> and <param>)
 ros2 param set /<node_name> <param> <value>
 ```
+
+
+
+## Remote Controller Setup
+
+To use a remote controller and read signals from GPIO pins, install and start the required services on your Raspberry Pi:
+
+```bash
+sudo apt install pigpio python3-pigpio
+sudo systemctl enable pigpiod
+sudo systemctl start pigpiod
+```
+
+This will install the necessary libraries and ensure the `pigpiod` daemon runs at startup.
