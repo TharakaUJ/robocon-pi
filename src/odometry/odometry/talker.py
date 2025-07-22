@@ -44,6 +44,7 @@ class Controller(Node):
 
         # Create publishers for topics
         self.odometry_publisher = self.create_publisher(Pose2D, 'robot/odometry', 10)
+        self.velocity_publisher = self.create_publisher(Pose2D, 'robot/velocity', 10)
         
 
         self.get_logger().info('Controller node started. Listening serial connection and publishing to robot/odometry')
@@ -53,13 +54,13 @@ class Controller(Node):
         if self.serial_connection.in_waiting > 0:
             try:
                 # Read raw bytes for OdometryData struct: float theta, float x, float y
-                struct_fmt = '<3f'  # little-endian, 3 floats
+                struct_fmt = '<6f'  # little-endian, 6 floats
                 struct_size = struct.calcsize(struct_fmt)
                 raw_bytes = self.serial_connection.read(struct_size)
                 if len(raw_bytes) != struct_size:
                     raise ValueError("Incomplete OdometryData struct received")
 
-                theta, x, y = struct.unpack(struct_fmt, raw_bytes)
+                theta, x, y, vx, vy, omega = struct.unpack(struct_fmt, raw_bytes)
 
                 pose_msg = Pose2D()
                 pose_msg.x = x
@@ -67,7 +68,16 @@ class Controller(Node):
                 pose_msg.theta = theta
 
                 self.odometry_publisher.publish(pose_msg)
-                
+
+
+                # For velocity, we can use the same values or compute them
+                velocity_msg = Pose2D()
+                velocity_msg.x = vx
+                velocity_msg.y = vy
+                velocity_msg.theta = omega
+
+                self.velocity_publisher.publish(velocity_msg)
+
             except Exception as e:
                 self.get_logger().warning(f'Failed to parse odometry data: {e}')
 

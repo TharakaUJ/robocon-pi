@@ -20,6 +20,15 @@ float dx_world, dy_world;
 float dx_raw, dy_raw;
 float x_new, y_new;
 
+// Estimate angular velocity (omega) as change in yaw per loop iteration (rad/s)
+static float last_yaw = 0;
+static unsigned long last_time = millis();
+unsigned long now = millis();
+float dt = (now - last_time) / 1000.0f; // convert ms to seconds
+
+float dyaw = yaw - last_yaw;
+
+
 void setup()
 {
   Serial.begin(115200);
@@ -63,18 +72,35 @@ void loop()
   y_new = deltaY + dy_world;
 
   // Create a struct to hold odometry data
-  struct OdometryData {
+  struct OdometryData
+  {
     float theta;
     float x;
     float y;
+    float vx;
+    float vy;
+    float omega;
   } odom;
 
   odom.theta = yaw;
   odom.x = x_new;
   odom.y = y_new;
+  odom.vx = dx_world;
+  odom.vy = dy_world;
+
+  // Handle wrap-around for yaw (assuming yaw in degrees 0-360)
+  if (dyaw > 180)
+    dyaw -= 360;
+  if (dyaw < -180)
+    dyaw += 360;
+
+  odom.omega = (dt > 0) ? (dyaw * DEG_TO_RAD) / dt : 0; // omega in rad/s
+
+  last_yaw = yaw;
+  last_time = now;
 
   // Send the struct as raw bytes over Serial
-  Serial.write((uint8_t*)&odom, sizeof(odom));
+  Serial.write((uint8_t *)&odom, sizeof(odom));
 
   delay(100);
 }

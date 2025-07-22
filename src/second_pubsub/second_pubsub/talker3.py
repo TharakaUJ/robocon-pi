@@ -3,54 +3,37 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+from std_msgs.msg import Int32MultiArray
+from geometry_msgs.msg import Pose2D
 
 class Controller(Node):
     def __init__(self):
         super().__init__('Controller')
         # Create publishers for both topics
-        self.moving_publisher = self.create_publisher(String, 'robot/moving', 10)
-        self.lift_publisher = self.create_publisher(String, 'robot/lift', 10)
+        self.moving_publisher = self.create_publisher(Int32MultiArray, 'robot/moving', 10)
         
-        # Subscriber to incoming keys
+        # Subscriber to incoming movements
         self.subscription = self.create_subscription(
-            String,
-            'remote_keys',
+            Pose2D,
+            'movement',
             self.key_callback,
             10
         )
 
-        self.get_logger().info('Controller node started. Listening for key commands on /remote_keys')
+        self.get_logger().info('Controller node started. Listening for key commands on /movement')
 
-    def key_callback(self, msg: String):
-        key = msg.data.lower().strip()
-        if not key:
-            return
+    def key_callback(self, msg: Pose2D):
+        vx = int(msg.x)
+        vy = int(msg.y)
+        orientation = int(msg.theta)
 
-        if key == 'x':
-            self.get_logger().info('Received "x" - shutting down')
-            rclpy.shutdown()
-            return
+        # Example: Map vx, vy, orientation to motor commands
+        # This is a simple placeholder mapping
+        cmd = Int32MultiArray()
+        cmd.data = [vx, vy, orientation]
 
-        if key in ['w', 'a', 's', 'd', 'c']:
-            cmd = String()
-            if key == 'w':
-                cmd.data = '255 255 255 255'
-            elif key == 's':
-                cmd.data = '-255 -255 -255 -255'
-            elif key == 'a':
-                cmd.data = '255 -255 -255 255'
-            elif key == 'd':
-                cmd.data = '-255 255 255 -255'
-            elif key == 'c':
-                cmd.data = '0 0 0 0'
-            self.moving_publisher.publish(cmd)
-            self.get_logger().info(f'Published to robot/moving: "{cmd.data}"')
-
-        elif key in ['q', 'e']:
-            cmd = String()
-            cmd.data = 'UP' if key == 'q' else 'DOWN'
-            self.lift_publisher.publish(cmd)
-            self.get_logger().info(f'Published to robot/lift: "{cmd.data}"')
+        self.moving_publisher.publish(cmd)
+        self.get_logger().info(f'Published to robot/moving: "{cmd.data}"')
 
 
 def main(args=None):
