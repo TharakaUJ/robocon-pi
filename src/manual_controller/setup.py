@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'second_pubsub'
+package_name = 'manual_controller'
 
 setup(
     name=package_name,
@@ -13,16 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='pi',
-    maintainer_email='pi@todo.todo',
-    description='Package description',
-    license='License declaration',
+    maintainer='root',
+    maintainer_email='root@todo.todo',
+    description='TODO: Package description',
+    license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-		'talker = second_pubsub.talker3:main',
-		'listner = second_pubsub.listner3:main',
-        'callibrate = second_pubsub.callibrate:main',
+            'manual_controller = manual_controller.controller:main'
         ],
     },
 )
