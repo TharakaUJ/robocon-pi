@@ -97,9 +97,9 @@ class ESP32(Node):
         error_theta = theta - self.theta
 
         # Here you would implement your PID control logic
-        ux = error_vx * self.pid_controller.kp + (error_vx-self.error_vx) * self.pid_controller.kd
-        uy = error_vy * self.pid_controller.kp + (error_vy-self.error_vy)*self.pid_controller.kd
-        utheta = error_theta * self.pid_controller.kp + (error_theta-self.error_theta)*self.pid_controller.kd
+        ux = error_vx * self.pid_controller.kpx + (error_vx-self.error_vx) * self.pid_controller.kdx
+        uy = error_vy * self.pid_controller.kpy + (error_vy-self.error_vy)*self.pid_controller.kdy
+        utheta = error_theta * self.pid_controller.kpt + (error_theta-self.error_theta)*self.pid_controller.kdt
 
         self.error_vx = error_vx
         self.error_vy = error_vy

@@ -80,9 +80,9 @@ class PIDCalibrator(Node):
         ki = avg_error * 0.5
         kd = avg_deriv * 0.2
 
-        self.pid_controller.set_kp(kp)
-        self.pid_controller.set_ki(ki)
-        self.pid_controller.set_kd(kd)
+        self.pid_controller.set_kpx(kp)
+        self.pid_controller.set_kix(ki)
+        self.pid_controller.set_kdx(kd)
         self.pid_controller._log_params()
 
         self.get_logger().info(f"New PID gains -> kp: {kp:.2f}, ki: {ki:.2f}, kd: {kd:.2f}")
