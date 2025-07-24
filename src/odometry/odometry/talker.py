@@ -19,7 +19,7 @@ class Controller(Node):
         load_dotenv(dotenv_path)
 
 
-        self.serial_port = "/dev/ttyUSB0"
+        self.serial_port = os.getenv("ODOMETRY_PORT")
         self.baud_rate = 115200
         self.serial_connection = None
         
