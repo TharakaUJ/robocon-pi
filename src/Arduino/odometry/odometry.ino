@@ -28,7 +28,6 @@ float dt = (now - last_time) / 1000.0f; // convert ms to seconds
 
 float dyaw = yaw - last_yaw;
 
-
 void setup()
 {
   Serial.begin(115200);
@@ -68,8 +67,8 @@ void loop()
   dx_world = dx_raw * cos(yaw) - dy_raw * sin(yaw);
   dy_world = dx_raw * sin(yaw) - dy_raw * cos(yaw);
 
-  x_new = deltaX + dx_world;
-  y_new = deltaY + dy_world;
+  x_new += deltaX + dx_world;
+  y_new += deltaY + dy_world;
 
   // Create a struct to hold odometry data
   struct OdometryData
@@ -87,6 +86,20 @@ void loop()
   odom.y = y_new;
   odom.vx = dx_world;
   odom.vy = dy_world;
+
+
+  // Serial.print("theta: ");
+  // Serial.print(odom.theta);
+  // Serial.print(", x: ");
+  // Serial.print(odom.x);
+  // Serial.print(", y: ");
+  // Serial.print(odom.y);
+  // Serial.print(", vx: ");
+  // Serial.print(odom.vx);
+  // Serial.print(", vy: ");
+  // Serial.print(odom.vy);
+  // Serial.print(", omega: ");
+  // Serial.println(odom.omega);
 
   // Handle wrap-around for yaw (assuming yaw in degrees 0-360)
   if (dyaw > 180)
